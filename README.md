@@ -4,12 +4,13 @@ The current repository helps you to verify that you configured your [Testcontain
 
 ## Clone the repository and run the first Testcontainer test suite
 
-```
+```shell
 git clone https://github.com/AtomicJar/testcontainers-cloud-nodejs-example
 cd testcontainers-cloud-nodejs-example
-npm install
-npm test
+make test
 ```
+
+The `Make` command will install the dependencies and run the test suite.
 
 ## Verify the agent is running
 
