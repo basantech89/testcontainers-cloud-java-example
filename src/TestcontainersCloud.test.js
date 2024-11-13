@@ -81,7 +81,7 @@ describe('GenericContainer', () => {
             .withCopyContentToContainer([{content: initScript, target: '/docker-entrypoint-initdb.d/init.sql'}])
             .start();
 
-        console.log('container config', container.getUsername(), container.getPassword(), container.getDatabaseName(), container.getPort());
+        console.log('container config', container.getUsername(), container.getPassword(), container.getDatabase(), container.getPort());
         
         const client = new Client({
             connectionString: container.getConnectionUri(),
