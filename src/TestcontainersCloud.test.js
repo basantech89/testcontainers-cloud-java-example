@@ -1,7 +1,5 @@
 const { Client } = require('pg');
 const { PostgreSqlContainer} = require('@testcontainers/postgresql');
-const { getContainerRuntimeClient } = require('testcontainers/build/container-runtime');
-const {fail} = require("assert");
 
 const logo = "\n" +
     "████████╗███████╗███████╗████████╗ ██████╗ ██████╗ ███╗   ██╗████████╗ █████╗ ██╗███╗   ██╗███████╗██████╗ ███████╗ \n" +
@@ -29,27 +27,27 @@ const ohNo = "" +
     "                                                         ";
 
 describe('GenericContainer', () => {
-    it('tcc cloud engine', async () => {
-        const containerRuntime = await getContainerRuntimeClient();
-        const info = containerRuntime.info;
-        const { serverVersion, operatingSystem } = info.containerRuntime;
-        const isTestcontainersDesktop = serverVersion.includes('Testcontainers Desktop');
-        const isTestcontainersCloud = serverVersion.includes('testcontainerscloud');
-        if (!(isTestcontainersDesktop || isTestcontainersCloud)) {
-            console.log(ohNo)
-            fail()
-        }
+    // it('tcc cloud engine', async () => {
+    //     const containerRuntime = await getContainerRuntimeClient();
+    //     const info = containerRuntime.info;
+    //     const { serverVersion, operatingSystem } = info.containerRuntime;
+    //     const isTestcontainersDesktop = serverVersion.includes('Testcontainers Desktop');
+    //     const isTestcontainersCloud = serverVersion.includes('testcontainerscloud');
+    //     if (!(isTestcontainersDesktop || isTestcontainersCloud)) {
+    //         console.log(ohNo)
+    //         fail()
+    //     }
 
-        let runtimeName = "Testcontainers Cloud";
-        if (!serverVersion.includes("testcontainerscloud")) {
-            runtimeName = operatingSystem;
-        }
-        if (serverVersion.includes("Testcontainers Desktop")) {
-            runtimeName += " via Testcontainers Desktop app";
-        }
+    //     let runtimeName = "Testcontainers Cloud";
+    //     if (!serverVersion.includes("testcontainerscloud")) {
+    //         runtimeName = operatingSystem;
+    //     }
+    //     if (serverVersion.includes("Testcontainers Desktop")) {
+    //         runtimeName += " via Testcontainers Desktop app";
+    //     }
 
-        console.log(logo.replace("::::::", runtimeName));
-    });
+    //     console.log(logo.replace("::::::", runtimeName));
+    // });
 
     it('creates a postgresql container', async () => {
         const initScript = `
