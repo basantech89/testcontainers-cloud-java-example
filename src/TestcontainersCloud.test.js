@@ -51,7 +51,7 @@ describe('GenericContainer', () => {
         console.log(logo.replace("::::::", runtimeName));
     });
 
-    it('create postgresql container', async () => {
+    it('creates a postgresql container', async () => {
         const initScript = `
             create table guides
             (
@@ -80,6 +80,9 @@ describe('GenericContainer', () => {
         const container = await new PostgreSqlContainer("postgres:14-alpine")
             .withCopyContentToContainer([{content: initScript, target: '/docker-entrypoint-initdb.d/init.sql'}])
             .start();
+
+        console.log('container config', container.getUsername(), container.getPassword(), container.getDatabaseName(), container.getPort());
+        
         const client = new Client({
             connectionString: container.getConnectionUri(),
         });
